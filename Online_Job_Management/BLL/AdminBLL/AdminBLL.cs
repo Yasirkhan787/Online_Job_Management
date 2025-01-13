@@ -61,10 +61,37 @@ namespace Online_Job_Management.BLL.AdminBLL
         }
 
         public List<Job> GetAllJobs() => adminDAL.GetAllJobs();
-        public bool AddJob(Job job) => adminDAL.AddJob(job);
-        public bool UpdateJob(Job job) => adminDAL.UpdateJob(job);
-        public bool DeleteJob(int jobId) => adminDAL.DeleteJob(jobId);
 
+        // JobSeeker 
+        // Approved Jobs
+        public List<Job> GetAllApprovedJobs() => adminDAL.FetchApprovedJobs();
+        //Apply Job
+        public bool ApplyForJob(Application application)
+        {
+            try
+            {
+                // Pass the Application object to the DAL layer
+                return adminDAL.ApplyForJob(application);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in BLL while applying for job: " + ex.Message);
+            }
+        }
+        // Get User By ID
+        public User GetUserByID(int userID)
+        {
+            try
+            {
+                return adminDAL.FetchUserByID(userID);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Failed to fetch user details.", ex);
+            }
+        }
     }
+
 }
+
 

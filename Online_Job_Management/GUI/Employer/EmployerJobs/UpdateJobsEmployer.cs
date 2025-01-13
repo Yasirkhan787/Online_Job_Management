@@ -136,8 +136,9 @@ namespace Online_Job_Management.GUI.Employer.EmployerJobs
         // Profile
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            //form.Show();
-            //this.Close();
+            EmployerProfile form = new EmployerProfile(UserSession.UserID);
+            form.Show();
+            this.Close();
         }
 
         private void btnLogOut_Click(object sender, EventArgs e)

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Online_Job_Management.BLL.EmployerBLL;
 using Online_Job_Management.GUI.Employer.EmployerJobs;
+using Online_Job_Management.GUI.JobSeeker;
 using Online_Job_Management.GUI.SecurityManagement;
 using Online_Job_Management.Model;
 using Online_Job_Management.Session;
@@ -100,7 +101,9 @@ namespace Online_Job_Management.GUI.Employer
         // Profile Button 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-
+            EmployerProfile form = new EmployerProfile(UserSession.UserID);
+            form.Show();
+            this.Close();
         }
 
         // Logout Button

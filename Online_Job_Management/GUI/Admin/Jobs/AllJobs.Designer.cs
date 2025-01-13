@@ -128,7 +128,7 @@
             this.btnJob.FlatAppearance.BorderSize = 0;
             this.btnJob.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJob.ForeColor = System.Drawing.Color.White;
-            this.btnJob.Location = new System.Drawing.Point(31, 293);
+            this.btnJob.Location = new System.Drawing.Point(31, 283);
             this.btnJob.Name = "btnJob";
             this.btnJob.Size = new System.Drawing.Size(145, 45);
             this.btnJob.TabIndex = 5;
@@ -143,7 +143,7 @@
             this.btnUsers.FlatAppearance.BorderSize = 0;
             this.btnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsers.ForeColor = System.Drawing.Color.White;
-            this.btnUsers.Location = new System.Drawing.Point(31, 181);
+            this.btnUsers.Location = new System.Drawing.Point(31, 171);
             this.btnUsers.Name = "btnUsers";
             this.btnUsers.Size = new System.Drawing.Size(145, 45);
             this.btnUsers.TabIndex = 6;
@@ -175,7 +175,7 @@
             this.btnPending.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPending.Font = new System.Drawing.Font("Nirmala UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnPending.ForeColor = System.Drawing.Color.White;
-            this.btnPending.Location = new System.Drawing.Point(31, 237);
+            this.btnPending.Location = new System.Drawing.Point(31, 227);
             this.btnPending.Margin = new System.Windows.Forms.Padding(7, 8, 7, 8);
             this.btnPending.Name = "btnPending";
             this.btnPending.Size = new System.Drawing.Size(145, 45);

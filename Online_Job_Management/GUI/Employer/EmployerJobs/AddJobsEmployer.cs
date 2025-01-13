@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Online_Job_Management.BLL;
 using Online_Job_Management.BLL.EmployerBLL;
 using Online_Job_Management.GUI.Employer.EmployerJobs;
+using Online_Job_Management.GUI.JobSeeker;
 using Online_Job_Management.GUI.SecurityManagement;
 using Online_Job_Management.Model;
 using Online_Job_Management.Session;
@@ -134,8 +135,9 @@ namespace Online_Job_Management.GUI.Employer
         // Profile Button Click Event
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            // Implement profile navigation if required
-            MessageBox.Show("Profile section under construction.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            EmployerProfile form = new EmployerProfile(UserSession.UserID);
+            form.Show();
+            this.Close();
         }
 
         // Logout Button Click Event

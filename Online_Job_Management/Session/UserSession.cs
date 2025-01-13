@@ -13,6 +13,7 @@ namespace Online_Job_Management.Session
         public static string Name { get; set; }
         public static string Email { get; set; }
         public static string Role { get; set; }
+        public static string Phone { get; set; }
 
         public static void Clear()
         {
@@ -21,6 +22,7 @@ namespace Online_Job_Management.Session
             Name = null;
             Email = null;
             Role = null;
+            Phone = null;
         }
     }
 

@@ -264,5 +264,103 @@ namespace Online_Job_Management.DAL.AdminDAL
             }
         }
 
+        // JobSeeker Methods 
+        // Fetch Approved Jobs 
+        public List<Job> FetchApprovedJobs()
+        {
+            List<Job> jobs = new List<Job>();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT * FROM Jobs WHERE Status = 'Approved'";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    jobs.Add(new Job
+                    {
+                        JobID = Convert.ToInt32(reader["JobID"]),
+                        Title = reader["Title"].ToString(),
+                        Description = reader["Description"].ToString(),
+                        EmployerID = Convert.ToInt32(reader["EmployerID"]),
+                        CategoryID = Convert.ToInt32(reader["CategoryID"]),
+                        Location = reader["Location"].ToString(),
+                        Salary = Convert.ToDecimal(reader["Salary"]),
+                        Requirements = reader["Requirements"].ToString(),
+                        Status = reader["Status"].ToString()
+                    });
+                }
+            }
+
+            return jobs;
+        }
+        
+        // ADD Applications 
+        public bool ApplyForJob(Application application)
+        {
+            string query = @"INSERT INTO JobApplications 
+                        (JobID, JobSeekerID, ResumePath, Status, ApplyDate) 
+                        VALUES 
+                        (@JobID, @JobSeekerID, @ResumePath, @Status, @ApplyDate)";
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        // Add parameters to prevent SQL injection
+                        command.Parameters.AddWithValue("@JobID", application.JobID);
+                        command.Parameters.AddWithValue("@JobSeekerID", application.JobSeekerID);
+                        command.Parameters.AddWithValue("@ResumePath", application.ResumePath);
+                        command.Parameters.AddWithValue("@Status", "Pending"); // Default status is Pending
+                        command.Parameters.AddWithValue("@ApplyDate", DateTime.Now);
+
+                        connection.Open();
+                        int rowsAffected = command.ExecuteNonQuery();
+
+                        return rowsAffected > 0; // Return true if the insert operation was successful
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in DAL while applying for job: " + ex.Message);
+            }
+        }
+        // Get User By Id 
+        public User FetchUserByID(int userID)
+        {
+            User user = null;
+
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                string query = "SELECT UserID, UserName, Email, Name, Phone, Role " +
+                               "FROM Users WHERE UserID = @UserID";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@UserID", userID);
+
+                conn.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    user = new User
+                    {
+                        UserID = Convert.ToInt32(reader["UserID"]),
+                        Username = reader["UserName"].ToString(),
+                        Email = reader["Email"].ToString(),
+                        Name = reader["Name"].ToString(),
+                        Phone = reader["Phone"].ToString(),
+                        Role = reader["Role"].ToString()
+                    };
+                }
+                reader.Close();
+            }
+            return user;
+        }
     }
 }
+
+
